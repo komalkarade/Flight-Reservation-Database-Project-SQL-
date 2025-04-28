@@ -1,0 +1,53 @@
+# Business Problem MEDIUM LEVEL
+
+1. Find flights with source and destination airport names.
+2. List all passengers along with their ticket total amount.
+3. Find all routes that cost more than 4000.
+4. List ticket number, carrier name and total amount where fare is above average.
+5. Find users whose type is 'ADMIN'.
+6. Find flights having seat_capacity more than 150.
+7. Count how many users are there of each type (Admin, User).
+8. List all payments with their status grouped.
+9. Show all passengers who traveled in flights operated by 'IndiGo'.
+10. Find the maximum fare paid by any passenger.
+11. Find carriers with more than 2 flights scheduled.
+12. Find airports with at least 2 routes passing through.
+13. Find the average fare between Pune and Delhi.
+14. Find passengers whose date of birth is before 2000.
+15. Find flights sorted by carrier name.
+16. Update seat capacity of a specific flight.
+17. Delete a ticket if its status is 'Cancelled'.
+18. Insert a feedback for user 'komal123'.
+19. Find users who have not given any feedback yet.
+20. Find passengers whose flight was operated by 'Air India' and ticket amount > 5000.
+21. Find routes where fare is less than the average fare.
+22. Find all users whose username starts with 'k'.
+23. Find airports whose location name ends with 'pur'.
+24. Display tickets with their total amount and corresponding flight departure location.
+25. List the top 3 most expensive tickets.
+26. List passengers born between 1990 and 2000.
+27. Find users with the shortest password length.
+28. Find flight numbers with booked seats greater than 100.
+29. Show payments where status is pending or null.
+30. Update payment status to 'Completed' if amount > 5000.
+31. Find flights where arrival airport is not set (null).
+32. Find all tickets which have not been assigned a payment yet.
+33. Delete passengers with null ticket number (invalid data).
+34. Find flights grouped by departure city and show total seats booked.
+35. Find the number of flights arriving at each airport.
+36. Find the total GST collected from all tickets.
+37. Find number of passengers traveling on each ticket.
+38. Find flights that are either from 'Pune' or 'Delhi'.
+39. Find passengers aged between 18 and 60.
+40. Find tickets where total amount > 5000 and payment is pending.
+41. List flights ordered by booked seats descending.
+42. List top 5 passengers who paid the highest fares.
+43. Find tickets booked in ascending order of total amount.
+44. Find the first feedback given (oldest record).
+45. List flight details with their route fare.
+46. List passenger name, flight carrier, and total ticket amount.
+47. Find passengers whose flight departed from Mumbai.
+48. Find all users who registered but have not booked tickets yet.
+49. Find payments done for tickets belonging to 'Air India'.
+50. Find all flights operating on a route from 'Pune' to 'Delhi'.
+
