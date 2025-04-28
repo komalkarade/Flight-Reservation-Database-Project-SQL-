@@ -1,0 +1,344 @@
+#Solution Business Problem MEDIUM LEVEL
+
+1. Find flights with source and destination airport names.
+
+SELECT f.flight_number, a1.airport_location AS source, a2.airport_location AS destination
+FROM flight f
+JOIN airport a1 ON f.departure = a1.airport_code
+JOIN airport a2 ON f.arrival = a2.airport_code;
+---------------------------------------------------------------------------------------------------------------------------
+
+2. List all passengers along with their ticket total amount.
+
+SELECT p. passenger_name,t.ticket_number,t.total_amount
+FROM passenger p
+JOIN ticket t ON p.ticket_number=t.ticket_number
+
+------------------------------------------------------------------------------------------------------------------------
+
+3. Find all routes that cost more than 4000.
+
+
+SELECT * FROM route where fare>4000;
+------------------------------------------------------------------------------------------------------------------------
+4. List ticket number, carrier name and total amount where fare is above average.
+
+SELECT t.ticket_number,t.carrier_name,t. total_amount FROM ticket t
+WHERE  total_amount >(select Avg(total_amount) from ticket );
+
+------------------------------------------------------------------------------------------------------------------------
+
+5. Find users whose type is 'ADMIN'.
+
+SELECT * FROM flight_user WHERE type='ADMIN';
+
+-----------------------------------------------------------------------------------------------------------------------
+6. Find flights having seat_capacity more than 150.
+
+SELECT * FROM flight WHERE seat_capacity >150;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+7. Count how many users are there of each type (Admin, User).
+
+
+SELECT  COUNT(*)  , type FROM flight_user GROUP BY type;
+
+----------------------------------------------------------------------------------------------------------------------
+
+8. List all payments with their status grouped.
+
+SELECT status ,COUNT(*) FROM payment GROUP BY status;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+9. Show all passengers who traveled in flights operated by 'IndiGo'.
+
+
+SELECT p.passenger_name
+FROM passenger p
+JOIN ticket t ON p.ticket_number = t.ticket_number
+WHERE t.carrier_name = 'IndiGo';
+
+-----------------------------------------------------------------------------------------------------------------------
+10. Find the maximum fare paid by any passenger.
+
+SELECT MAX(fare) FROM passenger;
+-----------------------------------------------------------------------------------------------------------------------
+
+11. Find carriers with more than 2 flights scheduled.
+
+ SELECT count(*), carrier_name FROM flight
+ GROUP BY carrier_name
+HAVING COUNT(*) >2;
+
+------------------------------------------------------------------------------------------------------------------------
+12. Find airports with at least 2 routes passing through.
+
+SELECT COUNT(*),source_airport_code FROM route
+GROUP BY source_airport_code
+HAVING COUNT(*)> 2;
+
+------------------------------------------------------------------------------------------------------------------------
+
+13. Find the average fare between Pune and Delhi.
+
+SELECT AVG(fare) FROM route 
+WHERE source_airport_code='PNQ' AND  destination_airport_code='DEL';
+-------------------------------------------------------------------------------------------------------------------------
+
+14. Find passengers whose date of birth is before 2000.
+
+SELECT * FROM passenger WHERE passengerdob < '2000-01-01';
+
+------------------------------------------------------------------------------------------------------------------------
+
+15. Find flights sorted by carrier name.
+
+ SELECT * FROM flight
+ORDER BY carrier_name ASC;
+----------------------------------------------------------------------------------------------------------------------
+
+16. Update seat capacity of a specific flight.
+
+UPDATE flight SET seat_capacity = 180 WHERE flight_number = 101;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+17. Delete a ticket if its status is 'Cancelled'.
+
+DELETE FROM ticket WHERE status = 'Cancelled';
+
+----------------------------------------------------------------------------------------------------------------------
+
+18. Insert a feedback for user 'komal123'.
+
+INSERT INTO feed_back(message, username) VALUES ('Very good experience','komal123')
+
+-----------------------------------------------------------------------------------------------------------------------
+
+19. Find users who have not given any feedback yet.
+
+SELECT * FROM flight_user 
+WHERE username NOT IN (SELECT username FROM feed_back);
+
+-----------------------------------------------------------------------------------------------------------------------
+
+20. Find passengers whose flight was operated by 'Air India' and ticket amount > 5000.
+
+
+
+SELECT p.passenger_name
+FROM passenger p
+JOIN ticket t ON p.ticket_number = t.ticket_number
+WHERE t.carrier_name = 'Air India' AND t.total_amount > 5000;
+
+------------------------------------------------------------------------------------------------------------------------
+
+21. Find routes where fare is less than the average fare.
+
+SELECT * FROM route WHERE fare <(select AVG(fare) FROM route );
+
+-----------------------------------------------------------------------------------------------------------------------
+
+22. Find all users whose username starts with 'k'.
+
+SELECT * FROM flight_user WHERE username LIKE 'k%';
+
+-----------------------------------------------------------------------------------------------------------------------
+
+23. Find airports whose location name ends with 'pur'.
+
+SELECT * FROM airport where airport_location like '%pur' ;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+24. Display tickets with their total amount and corresponding flight departure location.
+
+SELECT ticket_number, total_amount,flight.departure FROM ticket
+JOIN flight ON flight.flight_number=ticket.flight_number;
+
+------------------------------------------------------------------------------------------------------------------------
+
+25. List the top 3 most expensive tickets.
+
+SELECT * FROM ticket ORDER BY total_amount DESC LIMIT 3;
+
+-------------------------------------------------------------------------------------------------------------------------
+
+26. List passengers born between 1990 and 2000.
+
+
+SELECT * FROM passenger WHERE passengerdob BETWEEN '1990-01-01' AND  '2000-12-31';
+
+------------------------------------------------------------------------------------------------------------------------
+
+27. Find users with the shortest password length.
+
+SELECT username, LENGTH(password) AS pass_length
+FROM flight_user 
+ORDER BY pass_length ASC;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+28. Find flight numbers with booked seats greater than 100.
+
+SELECT flight_number,seat_booked,carrier_name FROM flight where seat_booked>100;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+29. Show payments where status is pending or null.
+
+SELECT * FROM payment WHERE status IS NULL OR status='pending';
+
+-----------------------------------------------------------------------------------------------------------------------
+
+30. Update payment status to 'Completed' if amount > 5000.
+
+UPDATE payment set status = 'Completed' WHERE amount >5000
+
+------------------------------------------------------------------------------------------------------------------------
+31. Find flights where arrival airport is not set (null).
+
+SELECT * FROM flight WHERE arrival IS NULL;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+32. Find all tickets which have not been assigned a payment yet.
+
+SELECT * FROM ticket WHERE ticket_number NOT IN (SELECT ticket_number FROM payment);
+
+-----------------------------------------------------------------------------------------------------------------------
+
+33. Delete passengers with null ticket number (invalid data).
+
+DELETE FROM passenger WHERE ticket_number IS NULL
+
+-----------------------------------------------------------------------------------------------------------------------
+
+34. Find flights grouped by departure city and show total seats booked.
+
+SELECT departure, sum(seat_booked) FROM flight
+GROUP BY departure;
+
+-------------------------------------------------------------------------------------------------------------------------
+
+35. Find the number of flights arriving at each airport.
+
+SELECT  arrival, COUNT(*)  FROM flight
+GROUP BY arrival;
+-----------------------------------------------------------------------------------------------------------------------
+
+36. Find the total GST collected from all tickets.
+
+SELECT SUM(gst_amount) FROM ticket;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+37. Find number of passengers traveling on each ticket.
+
+SELECT ticket_number, COUNT(*) 
+FROM passenger
+GROUP BY ticket_number
+
+------------------------------------------------------------------------------------------------------------------------
+
+38. Find flights that are either from 'Pune' or 'Delhi'.
+
+SELECT * FROM flight WHERE arrival='Pune' or departure= 'Delhi';
+
+------------------------------------------------------------------------------------------------------------------------
+
+39. Find passengers aged between 18 and 60.
+
+SELECT *
+FROM passenger
+WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, passengerdob::date)) BETWEEN 18 AND 60;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+40. Find tickets where total amount > 5000 and payment is pending.
+
+SELECT * FROM ticket 
+JOIN payment ON ticket.ticket_amount=payment.amount
+WHERE total_amount > 5000 AND  (payment.status='pending' or payment.status IS NULL)
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+41. List flights ordered by booked seats descending.
+
+SELECT * FROM flight ORDER BY seat_booked DESC;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+42. List top 5 passengers who paid the highest fares.
+
+SELECT  *  FROM passenger
+ORDER BY fare DESC LIMIT 5 ;
+----------------------------------------------------------------------------------------------------------------------
+
+43. Find tickets booked in ascending order of total amount.
+
+SELECT * FROM ticket ORDER BY total_amount ASC;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+44. Find the first feedback given (oldest record).
+
+SELECT * FROM feed_back ORDER BY id ASC LIMIT 1;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+45. List flight details with their route fare.
+
+SELECT f.flight_number, f.carrier_name, route.fare FROM flight f
+JOIN route ON f.route_id= route.route_id;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+46. List passenger name, flight carrier, and total ticket amount.
+
+SELECT  p.passenger_name, f.carrier_name, t.total_amount FROM passenger p
+JOIN ticket t ON p.ticket_number=t.ticket_number
+JOIN flight f ON t.flight_number=f.flight_number;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+47. Find passengers whose flight departed from Mumbai.
+
+SELECT p.passenger_name
+FROM passenger p
+JOIN ticket t ON p.ticket_number = t.ticket_number
+JOIN flight f ON t.flight_number = f.flight_number
+WHERE f.departure = 'Mumbai';
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+48. Find all users who registered but have not booked tickets yet.
+
+SELECT u.username
+FROM flight_user u
+LEFT JOIN ticket t ON u.username = t.username
+WHERE t.username IS NULL;
+
+------------------------------------------------------------------------------------------------------------------------
+
+49. Find payments done for tickets belonging to 'Air India'.
+
+SELECT p.*
+FROM payment p
+JOIN ticket t ON p.ticket_number = t.ticket_number
+WHERE t.carrier_name = 'Air India';
+-----------------------------------------------------------------------------------------------------------------------
+
+50. Find all flights operating on a route from 'Pune' to 'Delhi'.
+
+SELECT f.*
+FROM flight f
+JOIN route r ON f.route_id = r.route_id
+WHERE r.source_airport_code = 'PNQ' AND r.destination_airport_code = 'DEL';
+
+-----------------------------------------------------------------------------------------------------------------------
+
