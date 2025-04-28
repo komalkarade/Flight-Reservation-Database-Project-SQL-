@@ -1,0 +1,32 @@
+#Business Problems BASIC LEVEL
+
+1. List all flights available.
+2. Show all airports and their locations.
+3. Find all passengers who booked a ticket.
+4. List all feedback messages left by users.
+5. Display all users registered in the system.
+6. Find flights departing from 'Pune'.
+7. Find flights arriving at 'Delhi'.
+8. Show passengers whose fare is more than 5000.
+9. Find feedbacks given by username 'komal123'.
+10. List tickets with total amount greater than 8000.
+11. Count the total number of airports.
+12. Count the total number of flights.
+13.  Calculate average fare of all passengers.
+14.Sum of total amount of all tickets.
+15. Find the minimum fare among passengers.
+16.  Find the maximum total amount of ticket.
+17. Show ticket details with flight carrier names.
+18.  Show passengers and their ticket details.
+19.  List flights and their routes.
+20. Show passengers who traveled on a flight from 'Pune'.
+21. Find flights with less than 10 seats left.
+22. Find flights operated by 'IndiGo'.
+23.Group flights by carrier name and count number of flights.
+24. Group feedback messages by username.
+25. List flights ordered by seat_capacity descending.
+26.  List passengers ordered by fare ascending.
+27. Find flights with fare greater than average fare.
+28. Find the most expensive ticket.
+29. List distinct carrier names.
+30. Find payments whose status is NULL.
